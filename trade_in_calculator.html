@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trade-In Calculator</title>
+    <script>
+        function calculateTradeIn() {
+            let tradeInValue = parseFloat(document.getElementById("tradeInValue").value);
+            let buyingPrice = parseFloat(document.getElementById("buyingPrice").value);
+            let extendedWarranty = parseFloat(document.getElementById("extendedWarranty").value) || 0;
+            let membership = document.getElementById("membership").value;
+            
+            let maxCapRates = {
+                "No": 1.00,
+                "Basic": 1.05,
+                "Pro": 1.10,
+                "VIP": 1.20
+            };
+            
+            let discountRates = {
+                "No": 0.10,
+                "Basic": 0.15,
+                "Pro": 0.20,
+                "VIP": 0.30
+            };
+            
+            let tradeInMaxCap = Math.ceil(tradeInValue * maxCapRates[membership]);
+            let tradeInDiscountPercent = discountRates[membership] * 100;
+            let tradeInAmount = Math.ceil((buyingPrice + extendedWarranty) * discountRates[membership]);
+            
+            if (tradeInAmount > tradeInMaxCap) {
+                tradeInAmount = tradeInMaxCap;
+            }
+            
+            let finalPrice = (buyingPrice + extendedWarranty) - tradeInAmount;
+            
+            document.getElementById("tradeInMaxCapResult").innerHTML = "Trade-In Value (Max Cap): RM " + tradeInMaxCap;
+            document.getElementById("tradeInDiscountResult").innerHTML = "Trade-In Discount: " + tradeInDiscountPercent + "%";
+            document.getElementById("tradeInAmountResult").innerHTML = "Trade-In Amount: RM " + tradeInAmount;
+            document.getElementById("finalPriceResult").innerHTML = "Final Price to Pay: RM " + finalPrice.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <h2>Trade-In Calculator</h2>
+    
+    <label>Trade-In Value (RM):</label>
+    <input type="number" id="tradeInValue" step="0.01"><br><br>
+    
+    <label>Buying Price (RM):</label>
+    <input type="number" id="buyingPrice" step="0.01"><br><br>
+    
+    <label>Extended Warranty (RM):</label>
+    <input type="number" id="extendedWarranty" step="0.01"><br><br>
+    
+    <label>Membership Level:</label>
+    <select id="membership">
+        <option value="No">No Membership</option>
+        <option value="Basic">Basic</option>
+        <option value="Pro">Pro</option>
+        <option value="VIP">VIP</option>
+    </select><br><br>
+    
+    <button onclick="calculateTradeIn()">Calculate</button>
+    <h3 id="tradeInMaxCapResult"></h3>
+    <h3 id="tradeInDiscountResult"></h3>
+    <h3 id="tradeInAmountResult"></h3>
+    <h3 id="finalPriceResult"></h3>
+</body>
+</html>
