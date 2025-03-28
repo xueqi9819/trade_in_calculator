@@ -45,20 +45,20 @@
     
     <label>Trade-In Value (RM):</label>
     <input type="number" id="tradeInValue" step="0.01"><br><br>
-    
+     
+    <label>Membership Level:</label>
+    <select id="membership">
+        <option value="No">Non Member</option>
+        <option value="Basic">Basic</option>
+        <option value="Pro">Pro</option>
+        <option value="VIP">VIP</option>
+    </select><br><br>
     <label>Buying Price (RM):</label>
     <input type="number" id="buyingPrice" step="0.01"><br><br>
     
     <label>Extended Warranty (RM):</label>
     <input type="number" id="extendedWarranty" step="0.01"><br><br>
-    
-    <label>Membership Level:</label>
-    <select id="membership">
-        <option value="No">No Membership</option>
-        <option value="Basic">Basic</option>
-        <option value="Pro">Pro</option>
-        <option value="VIP">VIP</option>
-    </select><br><br>
+   
     
     <button onclick="calculateTradeIn()">Calculate</button>
     <h3 id="tradeInMaxCapResult"></h3>
